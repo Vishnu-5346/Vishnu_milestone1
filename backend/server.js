@@ -1,8 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
+const aiRoutes = require('./routes/ai');
 
 // Initialize app
 const app = express();
@@ -17,14 +19,28 @@ connectDB();
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/ai', aiRoutes);
 
-// Base route / health check
-app.get('/', (req, res) => {
-  res.json({
-    status: 'online',
-    message: 'AI Multilingual Mass Communication Platform API is running'
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api/')) {
+      res.sendFile(path.resolve(__dirname, '..', 'frontend', 'dist', 'index.html'));
+    } else {
+      res.status(404).json({ success: false, message: 'API endpoint not found' });
+    }
   });
-});
+} else {
+  // Base route / health check
+  app.get('/', (req, res) => {
+    res.json({
+      status: 'online',
+      message: 'AI Multilingual Mass Communication Platform API is running'
+    });
+  });
+}
 
 // Handle 404
 app.use((req, res, next) => {

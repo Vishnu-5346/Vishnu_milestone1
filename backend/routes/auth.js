@@ -5,6 +5,9 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const { protect } = require('../middleware/auth');
 
+// Store temporary reset codes (in memory)
+const resetCodes = new Map(); // email -> { code, expiresAt }
+
 // Generate JWT token helper
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -215,6 +218,103 @@ router.get('/profile', protect, async (req, res) => {
     } else {
       return res.status(404).json({ success: false, message: 'User not found' });
     }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// @desc    Request password reset (Forgot Password)
+// @route   POST /api/auth/forgot-password
+// @access  Public
+router.post('/forgot-password', async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ success: false, message: 'Please enter your email address' });
+    }
+
+    const emailLower = email.toLowerCase().trim();
+    let userExists = false;
+
+    if (global.useMockDatabase) {
+      userExists = global.mockUsers.some(u => u.email.toLowerCase() === emailLower);
+    } else {
+      const user = await User.findOne({ email: emailLower });
+      userExists = !!user;
+    }
+
+    if (!userExists) {
+      return res.status(404).json({ success: false, message: 'No account found with this email address' });
+    }
+
+    // Generate a 6-digit verification code
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    resetCodes.set(emailLower, {
+      code,
+      expiresAt: Date.now() + 10 * 60 * 1000 // 10 minutes expiry
+    });
+
+    // Simulate sending email by returning the code in the response
+    return res.json({
+      success: true,
+      message: 'Reset code generated successfully',
+      code: code // Returning the code directly so frontend can simulate "receiving" it
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// @desc    Reset password using verification code
+// @route   POST /api/auth/reset-password
+// @access  Public
+router.post('/reset-password', async (req, res) => {
+  try {
+    const { email, code, newPassword } = req.body;
+
+    if (!email || !code || !newPassword) {
+      return res.status(400).json({ success: false, message: 'All fields are required' });
+    }
+
+    if (newPassword.length < 8) {
+      return res.status(400).json({ success: false, message: 'New password must be at least 8 characters long' });
+    }
+
+    const emailLower = email.toLowerCase().trim();
+    const savedRecord = resetCodes.get(emailLower);
+
+    if (!savedRecord || savedRecord.code !== code || savedRecord.expiresAt < Date.now()) {
+      return res.status(400).json({ success: false, message: 'Invalid or expired verification code' });
+    }
+
+    // Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    if (global.useMockDatabase) {
+      const userIndex = global.mockUsers.findIndex(u => u.email.toLowerCase() === emailLower);
+      if (userIndex === -1) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+      global.mockUsers[userIndex].password = hashedPassword;
+    } else {
+      const user = await User.findOne({ email: emailLower });
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+      user.password = newPassword;
+      await user.save();
+    }
+
+    // Clean up reset code
+    resetCodes.delete(emailLower);
+
+    return res.json({
+      success: true,
+      message: 'Password reset successful. You can now login with your new password.'
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ success: false, message: error.message });

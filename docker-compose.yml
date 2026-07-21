@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  database:
+    image: mongo:latest
+    container_name: mass-comm-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: always
+
+  ai-service:
+    build:
+      context: ./ai_service
+      dockerfile: Dockerfile
+    container_name: mass-comm-ai-service
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    restart: always
+
+  web-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mass-comm-web-app
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGODB_URI=mongodb://database:27017/mass_comm
+      - JWT_SECRET=supersecretkeyformasscommunicationplatformai
+      - AI_SERVICE_URL=http://ai-service:8000
+      - NODE_ENV=production
+    depends_on:
+      - database
+      - ai-service
+    restart: always
+
+volumes:
+  mongo-data:

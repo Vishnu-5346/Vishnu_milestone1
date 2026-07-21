@@ -22,12 +22,12 @@ const Dashboard = () => {
     navigate('/login');
   };
 
-  // Mock statistics matching layout spec
+  // Mock statistics matching layout spec with dark mode class configurations
   const stats = [
-    { label: 'Total Campaigns', value: '25', icon: FolderGit, color: 'text-blue-600 bg-blue-50' },
-    { label: 'Active Campaigns', value: '9', icon: Activity, color: 'text-emerald-600 bg-emerald-50' },
-    { label: 'Audience size', value: '15,000', icon: Users, color: 'text-indigo-600 bg-indigo-50' },
-    { label: 'Languages Supported', value: '12', icon: Globe, color: 'text-teal-600 bg-teal-50' },
+    { label: 'Total Campaigns', value: '25', icon: FolderGit, color: 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/20' },
+    { label: 'Active Campaigns', value: '9', icon: Activity, color: 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20' },
+    { label: 'Audience size', value: '15,000', icon: Users, color: 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/20' },
+    { label: 'Languages Supported', value: '12', icon: Globe, color: 'text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/20' },
   ];
 
   // Mock list of recent campaigns for premium dashboard feel
@@ -40,23 +40,23 @@ const Dashboard = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Welcome Banner */}
-      <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div className="bg-white dark:bg-[#1E293B] rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 dark:border-[#334155] mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
             Welcome, {user?.fullname || 'Vishnu'}
           </h1>
           <div className="flex items-center gap-2 mt-1.5">
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-50 text-primary-700">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-50 dark:bg-primary-950/20 text-primary-700 dark:text-primary-400 border border-primary-100 dark:border-primary-900/20">
               {user?.role || 'Campaign Manager'}
             </span>
             <span className="text-sm text-gray-400">•</span>
-            <span className="text-sm text-gray-500">{user?.organization || 'MassComm Org'}</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">{user?.organization || 'MassComm Org'}</span>
           </div>
         </div>
 
         <button
           onClick={handleLogout}
-          className="inline-flex items-center px-4 py-2 border border-gray-200 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 shadow-sm transition-all focus:outline-none"
+          className="inline-flex items-center px-4 py-2 border border-gray-200 dark:border-[#334155] text-sm font-medium rounded-lg text-gray-700 dark:text-gray-200 bg-white dark:bg-[#1E293B] hover:bg-gray-50 dark:hover:bg-gray-800 shadow-sm transition-all focus:outline-none cursor-pointer"
         >
           <LogOut className="h-4 w-4 mr-2 text-gray-400" />
           Logout
@@ -68,11 +68,11 @@ const Dashboard = () => {
         {stats.map((stat, idx) => {
           const IconComponent = stat.icon;
           return (
-            <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover-scale">
+            <div key={idx} className="bg-white dark:bg-[#1E293B] p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-[#334155] hover-scale">
               <div className="flex justify-between items-start">
                 <div>
-                  <p className="text-sm font-medium text-gray-500 mb-1">{stat.label}</p>
-                  <h3 className="text-2xl font-bold text-gray-900">{stat.value}</h3>
+                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">{stat.label}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</h3>
                 </div>
                 <div className={`p-3 rounded-xl ${stat.color}`}>
                   <IconComponent className="h-5 w-5" />
@@ -87,20 +87,20 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* Quick Actions Panel */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 h-fit">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Quick Actions</h2>
+        <div className="bg-white dark:bg-[#1E293B] p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-[#334155] h-fit">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Quick Actions</h2>
           <div className="grid grid-cols-1 gap-3">
             <button
               onClick={() => navigate('/campaigns')}
-              className="flex items-center justify-between p-3.5 rounded-xl border border-gray-100 hover:border-primary-100 hover:bg-primary-50 text-left transition group"
+              className="flex items-center justify-between p-3.5 rounded-xl border border-gray-100 dark:border-[#334155] hover:border-primary-100 dark:hover:border-primary-900/30 hover:bg-primary-50 dark:hover:bg-primary-950/20 text-left transition group cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-50 text-primary rounded-lg group-hover:bg-primary group-hover:text-white transition">
+                <div className="p-2 bg-blue-50 dark:bg-blue-950/40 text-primary dark:text-primary-400 rounded-lg group-hover:bg-primary group-hover:text-white transition">
                   <PlusCircle className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm text-gray-900">Create Campaign</p>
-                  <p className="text-xs text-gray-500">Draft new notification blast</p>
+                  <p className="font-semibold text-sm text-gray-900 dark:text-white">Create Campaign</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Draft new notification blast</p>
                 </div>
               </div>
               <span className="text-gray-400 group-hover:text-primary transition font-bold">→</span>
@@ -108,15 +108,15 @@ const Dashboard = () => {
 
             <button
               onClick={() => navigate('/audience')}
-              className="flex items-center justify-between p-3.5 rounded-xl border border-gray-100 hover:border-secondary-100 hover:bg-secondary-50 text-left transition group"
+              className="flex items-center justify-between p-3.5 rounded-xl border border-gray-100 dark:border-[#334155] hover:border-secondary-100 dark:hover:border-teal-900/30 hover:bg-secondary-50 dark:hover:bg-teal-950/20 text-left transition group cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-teal-50 text-secondary rounded-lg group-hover:bg-secondary group-hover:text-white transition">
+                <div className="p-2 bg-teal-50 dark:bg-teal-950/40 text-secondary dark:text-teal-400 rounded-lg group-hover:bg-secondary group-hover:text-white transition">
                   <Users className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm text-gray-900">Manage Audience</p>
-                  <p className="text-xs text-gray-500">Configure target cohorts</p>
+                  <p className="font-semibold text-sm text-gray-900 dark:text-white">Manage Audience</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Configure target cohorts</p>
                 </div>
               </div>
               <span className="text-gray-400 group-hover:text-secondary transition font-bold">→</span>
@@ -124,15 +124,15 @@ const Dashboard = () => {
 
             <button
               onClick={() => navigate('/ai-content')}
-              className="flex items-center justify-between p-3.5 rounded-xl border border-gray-100 hover:border-purple-100 hover:bg-purple-50 text-left transition group"
+              className="flex items-center justify-between p-3.5 rounded-xl border border-gray-100 dark:border-[#334155] hover:border-purple-100 dark:hover:border-purple-900/30 hover:bg-purple-50 dark:hover:bg-purple-950/20 text-left transition group cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-purple-50 text-purple-600 rounded-lg group-hover:bg-purple-600 group-hover:text-white transition">
+                <div className="p-2 bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 rounded-lg group-hover:bg-purple-600 group-hover:text-white transition">
                   <Sparkles className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm text-gray-900">Generate AI Content</p>
-                  <p className="text-xs text-gray-500">Draft multilingual templates</p>
+                  <p className="font-semibold text-sm text-gray-900 dark:text-white">Generate AI Content</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Draft multilingual templates</p>
                 </div>
               </div>
               <span className="text-gray-400 group-hover:text-purple-600 transition font-bold">→</span>
@@ -140,15 +140,15 @@ const Dashboard = () => {
 
             <button
               onClick={() => navigate('/analytics')}
-              className="flex items-center justify-between p-3.5 rounded-xl border border-gray-100 hover:border-indigo-100 hover:bg-indigo-50 text-left transition group"
+              className="flex items-center justify-between p-3.5 rounded-xl border border-gray-100 dark:border-[#334155] hover:border-indigo-100 dark:hover:border-indigo-900/30 hover:bg-indigo-50 dark:hover:bg-indigo-950/20 text-left transition group cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-indigo-50 text-indigo-600 rounded-lg group-hover:bg-indigo-600 group-hover:text-white transition">
+                <div className="p-2 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 rounded-lg group-hover:bg-indigo-600 group-hover:text-white transition">
                   <BarChart3 className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm text-gray-900">Analytics</p>
-                  <p className="text-xs text-gray-500">Analyze campaign telemetry</p>
+                  <p className="font-semibold text-sm text-gray-900 dark:text-white">Analytics</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Analyze campaign telemetry</p>
                 </div>
               </div>
               <span className="text-gray-400 group-hover:text-indigo-600 transition font-bold">→</span>
@@ -157,12 +157,12 @@ const Dashboard = () => {
         </div>
 
         {/* Recent Campaigns Table */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 lg:col-span-2">
+        <div className="bg-white dark:bg-[#1E293B] p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-[#334155] lg:col-span-2">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-bold text-gray-900">Recent Campaigns</h2>
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white">Recent Campaigns</h2>
             <button 
               onClick={() => navigate('/campaigns')}
-              className="text-xs text-primary font-semibold hover:underline"
+              className="text-xs text-primary dark:text-primary-400 font-semibold hover:underline cursor-pointer"
             >
               View All Campaigns
             </button>
@@ -170,24 +170,24 @@ const Dashboard = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-gray-100 text-xs font-semibold text-gray-400 uppercase">
+                <tr className="border-b border-gray-100 dark:border-[#334155] text-xs font-semibold text-gray-400 uppercase">
                   <th className="pb-3">Campaign Name</th>
                   <th className="pb-3">Language</th>
                   <th className="pb-3">Reach</th>
                   <th className="pb-3">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-50 text-sm">
+              <tbody className="divide-y divide-gray-50 dark:divide-[#334155] text-sm">
                 {recentCampaigns.map((camp) => (
-                  <tr key={camp.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="py-3.5 font-medium text-gray-900">{camp.name}</td>
-                    <td className="py-3.5 text-gray-500">{camp.language}</td>
-                    <td className="py-3.5 text-gray-600">{camp.reach}</td>
+                  <tr key={camp.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3.5 font-medium text-gray-900 dark:text-white">{camp.name}</td>
+                    <td className="py-3.5 text-gray-500 dark:text-gray-400">{camp.language}</td>
+                    <td className="py-3.5 text-gray-600 dark:text-gray-300">{camp.reach}</td>
                     <td className="py-3.5">
                       <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                         camp.status === 'Active' 
-                          ? 'bg-emerald-50 text-emerald-700' 
-                          : 'bg-gray-100 text-gray-700'
+                          ? 'bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400 border border-emerald-100/50 dark:border-emerald-900/30' 
+                          : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-400'
                       }`}>
                         {camp.status}
                       </span>

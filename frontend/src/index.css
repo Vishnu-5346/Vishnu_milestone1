@@ -36,3 +36,109 @@
 .hover-scale:hover {
   transform: translateY(-2px) scale(1.01);
 }
+
+/* --- Interactive Theme Customizations --- */
+:root {
+  --primary-color: #2563EB;
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;
+  --primary-light-700: #1e40af;
+  --secondary-color: #14B8A6;
+}
+
+html.theme-blue {
+  --primary-color: #2563EB;
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;
+  --primary-light-700: #1e40af;
+  --secondary-color: #14B8A6;
+}
+
+html.theme-emerald {
+  --primary-color: #059669;
+  --primary-hover: #047857;
+  --primary-light: #ecfdf5;
+  --primary-light-700: #065f46;
+  --secondary-color: #06B6D4;
+}
+
+html.theme-violet {
+  --primary-color: #7C3AED;
+  --primary-hover: #6d28d9;
+  --primary-light: #f5f3ff;
+  --primary-light-700: #5b21b6;
+  --secondary-color: #EC4899;
+}
+
+/* Force override color utility definitions */
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+.hover\:bg-blue-700:hover, .hover\:bg-primary-700:hover {
+  background-color: var(--primary-hover) !important;
+}
+.text-primary {
+  color: var(--primary-color) !important;
+}
+.border-primary {
+  border-color: var(--primary-color) !important;
+}
+.bg-primary-100 {
+  background-color: var(--primary-light) !important;
+}
+.text-primary-700 {
+  color: var(--primary-light-700) !important;
+}
+.from-primary {
+  --tw-gradient-from: var(--primary-color) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: var(--primary-color) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.to-secondary {
+  --tw-gradient-to: var(--secondary-color) var(--tw-gradient-to-position) !important;
+}
+
+/* Smooth theme switching animation */
+body, aside, main, section, input, textarea, select, table, th, td, tr, button, .bg-white, .bg-gray-50, .border-gray-100, .border-gray-200, .card, .bg-blue-50\/50, .text-gray-900, .text-gray-700, .text-gray-600, .text-gray-500 {
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), border-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark theme variables mapping */
+html.dark {
+  --primary-color: #3B82F6;
+  --primary-hover: #2563EB;
+  --primary-light: rgba(59, 130, 246, 0.15);
+  --primary-light-700: #60a5fa;
+  --secondary-color: #14B8A6;
+}
+
+html.dark body {
+  background-color: #0F172A !important;
+  color: #ffffff !important;
+}
+
+/* Specific theme variation overrides in dark mode */
+html.dark.theme-blue {
+  --primary-color: #3B82F6;
+  --primary-hover: #2563EB;
+  --primary-light: rgba(59, 130, 246, 0.15);
+  --primary-light-700: #60a5fa;
+  --secondary-color: #14B8A6;
+}
+
+html.dark.theme-emerald {
+  --primary-color: #10B981;
+  --primary-hover: #059669;
+  --primary-light: rgba(16, 185, 129, 0.15);
+  --primary-light-700: #34d399;
+  --secondary-color: #06B6D4;
+}
+
+html.dark.theme-violet {
+  --primary-color: #8B5CF6;
+  --primary-hover: #7C3AED;
+  --primary-light: rgba(139, 92, 246, 0.15);
+  --primary-light-700: #a78bfa;
+  --secondary-color: #EC4899;
+}
+

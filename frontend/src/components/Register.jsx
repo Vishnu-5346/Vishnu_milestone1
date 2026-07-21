@@ -97,10 +97,10 @@ const Register = () => {
 
   return (
     <div className="max-w-xl mx-auto my-12 px-4">
-      <div className="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+      <div className="bg-white dark:bg-[#1E293B] p-8 rounded-2xl shadow-md border border-gray-100 dark:border-[#334155]">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">Create New Account</h2>
-          <p className="text-sm text-gray-500 mt-2">Set up your mass communication workspace</p>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Create New Account</h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">Set up your mass communication workspace</p>
         </div>
 
         {/* Global Success Alert */}
@@ -128,7 +128,7 @@ const Register = () => {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Full Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
                 <User className="h-4 w-4" />
@@ -139,7 +139,7 @@ const Register = () => {
                 value={formData.fullname}
                 onChange={handleChange}
                 placeholder="John Doe"
-                className={`pl-10 w-full rounded-lg border ${errors.fullname ? 'border-red-400 focus:ring-red-400' : 'border-gray-200 focus:ring-primary'} p-2.5 text-sm focus:outline-none focus:ring-2`}
+                className={`pl-10 w-full rounded-lg border bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white ${errors.fullname ? 'border-red-400 focus:ring-red-400' : 'border-gray-200 dark:border-[#334155] focus:ring-primary'} p-2.5 text-sm focus:outline-none focus:ring-2`}
               />
             </div>
             {errors.fullname && <p className="text-xs text-red-500 mt-1">{errors.fullname}</p>}
@@ -147,7 +147,7 @@ const Register = () => {
 
           {/* Email Address */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
                 <Mail className="h-4 w-4" />
@@ -158,7 +158,7 @@ const Register = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="example@organization.com"
-                className={`pl-10 w-full rounded-lg border ${errors.email ? 'border-red-400 focus:ring-red-400' : 'border-gray-200 focus:ring-primary'} p-2.5 text-sm focus:outline-none focus:ring-2`}
+                className={`pl-10 w-full rounded-lg border bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white ${errors.email ? 'border-red-400 focus:ring-red-400' : 'border-gray-200 dark:border-[#334155] focus:ring-primary'} p-2.5 text-sm focus:outline-none focus:ring-2`}
               />
             </div>
             {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
@@ -166,7 +166,7 @@ const Register = () => {
 
           {/* Phone Number */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone Number</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
                 <Phone className="h-4 w-4" />
@@ -177,7 +177,7 @@ const Register = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+1 (555) 123-4567"
-                className={`pl-10 w-full rounded-lg border ${errors.phone ? 'border-red-400 focus:ring-red-400' : 'border-gray-200 focus:ring-primary'} p-2.5 text-sm focus:outline-none focus:ring-2`}
+                className={`pl-10 w-full rounded-lg border bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white ${errors.phone ? 'border-red-400 focus:ring-red-400' : 'border-gray-200 dark:border-[#334155] focus:ring-primary'} p-2.5 text-sm focus:outline-none focus:ring-2`}
               />
             </div>
             {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
@@ -185,7 +185,7 @@ const Register = () => {
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Password</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
                 <Lock className="h-4 w-4" />
@@ -196,7 +196,7 @@ const Register = () => {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className={`pl-10 w-full rounded-lg border ${errors.password ? 'border-red-400 focus:ring-red-400' : 'border-gray-200 focus:ring-primary'} p-2.5 text-sm focus:outline-none focus:ring-2`}
+                className={`pl-10 w-full rounded-lg border bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white ${errors.password ? 'border-red-400 focus:ring-red-400' : 'border-gray-200 dark:border-[#334155] focus:ring-primary'} p-2.5 text-sm focus:outline-none focus:ring-2`}
               />
             </div>
             {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password}</p>}
@@ -204,7 +204,7 @@ const Register = () => {
 
           {/* Confirm Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Confirm Password</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
                 <Lock className="h-4 w-4" />
@@ -215,7 +215,7 @@ const Register = () => {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className={`pl-10 w-full rounded-lg border ${errors.confirmPassword ? 'border-red-400 focus:ring-red-400' : 'border-gray-200 focus:ring-primary'} p-2.5 text-sm focus:outline-none focus:ring-2`}
+                className={`pl-10 w-full rounded-lg border bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white ${errors.confirmPassword ? 'border-red-400 focus:ring-red-400' : 'border-gray-200 dark:border-[#334155] focus:ring-primary'} p-2.5 text-sm focus:outline-none focus:ring-2`}
               />
             </div>
             {errors.confirmPassword && <p className="text-xs text-red-500 mt-1">{errors.confirmPassword}</p>}
@@ -223,17 +223,17 @@ const Register = () => {
 
           {/* Role selection */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Role</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Role</label>
             <div className="grid grid-cols-3 gap-3">
               {['Administrator', 'Campaign Manager', 'Communication Team'].map((roleOption) => (
                 <button
                   key={roleOption}
                   type="button"
                   onClick={() => handleRoleChange(roleOption)}
-                  className={`border rounded-lg p-2.5 text-xs font-medium text-center transition-all ${
+                  className={`border rounded-lg p-2.5 text-xs font-semibold text-center transition-all cursor-pointer ${
                     formData.role === roleOption
-                      ? 'border-primary bg-blue-50 text-primary-700 ring-2 ring-primary-100'
-                      : 'border-gray-200 hover:bg-gray-50 text-gray-600'
+                      ? 'border-primary bg-blue-50 dark:bg-blue-950/20 text-primary-700 dark:text-primary-400 ring-2 ring-primary-100 dark:ring-blue-900/30'
+                      : 'border-gray-200 dark:border-[#334155] hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 bg-white dark:bg-[#1E293B]'
                   }`}
                 >
                   {roleOption}
@@ -244,7 +244,7 @@ const Register = () => {
 
           {/* Language Preference */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Language Preference</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Language Preference</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
                 <Globe className="h-4 w-4" />
@@ -253,7 +253,7 @@ const Register = () => {
                 name="language"
                 value={formData.language}
                 onChange={handleChange}
-                className="pl-10 w-full rounded-lg border border-gray-200 focus:ring-primary p-2.5 text-sm focus:outline-none focus:ring-2 bg-white appearance-none"
+                className="pl-10 w-full rounded-lg border border-gray-200 dark:border-[#334155] focus:ring-primary p-2.5 text-sm focus:outline-none focus:ring-2 bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white appearance-none cursor-pointer"
               >
                 <option value="English">English</option>
                 <option value="Spanish">Spanish</option>
@@ -264,7 +264,7 @@ const Register = () => {
                 <option value="Arabic">Arabic</option>
                 <option value="Japanese">Japanese</option>
               </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 dark:text-gray-300">
                 ▼
               </div>
             </div>
@@ -272,7 +272,7 @@ const Register = () => {
 
           {/* Organization Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Organization Name</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Organization Name</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
                 <Building2 className="h-4 w-4" />
@@ -283,7 +283,7 @@ const Register = () => {
                 value={formData.organization}
                 onChange={handleChange}
                 placeholder="Enterprise Inc."
-                className={`pl-10 w-full rounded-lg border ${errors.organization ? 'border-red-400 focus:ring-red-400' : 'border-gray-200 focus:ring-primary'} p-2.5 text-sm focus:outline-none focus:ring-2`}
+                className={`pl-10 w-full rounded-lg border bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white ${errors.organization ? 'border-red-400 focus:ring-red-400' : 'border-gray-200 dark:border-[#334155] focus:ring-primary'} p-2.5 text-sm focus:outline-none focus:ring-2`}
               />
             </div>
             {errors.organization && <p className="text-xs text-red-500 mt-1">{errors.organization}</p>}
@@ -293,13 +293,13 @@ const Register = () => {
           <button
             type="submit"
             disabled={loading || success}
-            className="w-full bg-primary hover:bg-blue-700 text-white font-medium py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm disabled:opacity-75 disabled:cursor-not-allowed mt-2"
+            className="w-full bg-primary hover:bg-blue-700 text-white font-medium py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm disabled:opacity-75 disabled:cursor-not-allowed mt-2 cursor-pointer"
           >
             {loading ? 'Registering Account...' : 'Register'}
           </button>
         </form>
 
-        <div className="mt-6 text-center text-sm text-gray-500">
+        <div className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
           Already have an account?{' '}
           <Link to="/login" className="text-primary font-medium hover:underline">
             Login
